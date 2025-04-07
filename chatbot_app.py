@@ -10,13 +10,14 @@ from datetime import datetime
 from nltk.util import ngrams
 from nltk import pos_tag
 import re
+import os
 
 nltk.download('punkt')
 nltk.download('wordnet')
 nltk.download('averaged_perceptron_tagger')
 
 # Initialize OpenAI API key
-openai.api_key = "OpenAI API Key"  # Replace with your OpenAI API Key
+openai.api_key = os.getenv("OPENAI_API_KEY")  # Replace with your OpenAI API Key
 
 # Initialize speech engine
 def speak(text):
