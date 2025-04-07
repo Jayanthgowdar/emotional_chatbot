@@ -15,6 +15,7 @@ import os
 nltk.download('punkt')
 nltk.download('wordnet')
 nltk.download('averaged_perceptron_tagger')
+nltk.download('omw-1.4')
 
 # Initialize OpenAI API key
 openai.api_key = os.getenv("OPENAI_API_KEY")  # Replace with your OpenAI API Key
