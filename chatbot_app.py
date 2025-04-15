@@ -12,6 +12,13 @@ from nltk import pos_tag
 import re
 import os
 
+# Check and download required NLTK resources
+nltk_packages = ['punkt', 'averaged_perceptron_tagger', 'wordnet', 'omw-1.4']
+for pkg in nltk_packages:
+    try:
+        nltk.data.find(f'tokenizers/{pkg}' if pkg == 'punkt' else f'corpora/{pkg}')
+    except LookupError:
+        nltk.download(pkg)
 nltk.download('punkt')
 nltk.download('wordnet')
 nltk.download('averaged_perceptron_tagger')
