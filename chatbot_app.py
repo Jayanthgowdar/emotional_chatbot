@@ -12,17 +12,20 @@ from nltk import pos_tag
 import re
 import os
 
-# Check and download required NLTK resources
+# Set up local download path for NLTK
+nltk_data_path = os.path.join(os.path.dirname(__file__), 'nltk_data')
+if not os.path.exists(nltk_data_path):
+    os.makedirs(nltk_data_path)
+
+nltk.data.path.append(nltk_data_path)
+
+# Download necessary resources locally
 nltk_packages = ['punkt', 'averaged_perceptron_tagger', 'wordnet', 'omw-1.4']
 for pkg in nltk_packages:
     try:
         nltk.data.find(f'tokenizers/{pkg}' if pkg == 'punkt' else f'corpora/{pkg}')
     except LookupError:
-        nltk.download(pkg)
-nltk.download('punkt')
-nltk.download('wordnet')
-nltk.download('averaged_perceptron_tagger')
-nltk.download('omw-1.4')
+        nltk.download(pkg, download_dir=nltk_data_path)
 
 # Initialize OpenAI API key
 openai.api_key = os.getenv("OPENAI_API_KEY")  # Replace with your OpenAI API Key
